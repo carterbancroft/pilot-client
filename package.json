@@ -15,5 +15,19 @@
   "bugs": {
     "url": "https://github.com/carterbancroft/pilot-client/issues"
   },
-  "homepage": "https://github.com/carterbancroft/pilot-client#readme"
+  "homepage": "https://github.com/carterbancroft/pilot-client#readme",
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1"
+  },
+  "dependencies": {
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "react-router": "^4.3.1",
+    "webpack": "^4.17.2",
+    "webpack-dev-server": "^3.1.8"
+  }
 }
