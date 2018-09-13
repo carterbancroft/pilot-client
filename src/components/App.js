@@ -38,7 +38,7 @@ class App extends React.Component {
         const { version } = this.state
         return (
             <div>
-                <button onClick={ this.getData }>
+                <button className="btn btn-primary" onClick={ this.getData }>
                     Get Some Data
                 </button>
                 <Version version={ version } />
