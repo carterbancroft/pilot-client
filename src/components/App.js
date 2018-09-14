@@ -1,12 +1,29 @@
 import React from 'react'
 
 
-function Version(props) {
-    const { version } = props
+function Transactions(props) {
+    const { transactions } = props
 
-    if (!version.length) return <br />
+    if (!transactions.length) return <br />
 
-    return <div>{ version }</div>
+    let items = transactions.map(t => (
+        <tr>
+            <td>{ t.item }</td>
+            <td>{ t.category }</td>
+            <td>{ t.amount_in_cents / 100 }</td>
+        </tr>
+    ))
+
+    return (
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Category</th>
+                <th>Amount</th>
+            </tr>
+            { items }
+        </table>
+    )
 }
 
 class App extends React.Component {
@@ -14,7 +31,7 @@ class App extends React.Component {
         super(...arguments)
 
         this.state = {
-            version: ''
+            transactions: ''
         }
 
         this.getData = this.getData.bind(this)
@@ -22,12 +39,16 @@ class App extends React.Component {
 
     getData() {
         fetch(
-            'http://localhost:9001/api/',
-            { credentials: 'same-origin' }
+            'http://localhost:9001/api/user/carterbancroft/transactions',
+            {
+                method: 'GET',
+                credentials: 'same-origin'
+            },
         )
-            .then(res => res.json())
+            .then(res => res.text())
             .then(json => {
-                this.setState({ version: json })
+                console.log(json)
+                this.setState({ transactions: json })
             })
             .catch(err => {
                 console.log(err)
@@ -35,13 +56,13 @@ class App extends React.Component {
     }
 
     render() {
-        const { version } = this.state
+        const { transactions } = this.state
         return (
             <div>
                 <button className="btn btn-primary" onClick={ this.getData }>
                     Get Some Data
                 </button>
-                <Version version={ version } />
+                <Transactions transactions={ transactions } />
             </div>
         )
     }
