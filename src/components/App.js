@@ -39,15 +39,14 @@ class App extends React.Component {
 
     getData() {
         fetch(
-            'http://localhost:9001/api/user/carterbancroft/transactions',
+            'http://localhost:9001/api/user/carterbancroft/transaction',
             {
                 method: 'GET',
                 credentials: 'same-origin'
             },
         )
-            .then(res => res.text())
+            .then(res => res.json())
             .then(json => {
-                console.log(json)
                 this.setState({ transactions: json })
             })
             .catch(err => {
